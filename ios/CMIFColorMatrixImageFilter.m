@@ -141,6 +141,11 @@ static CIContext* context;
   });
 }
 
+- (NSString*)getImageData
+{
+    return [UIImagePNGRepresentation(self.target.image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
 - (void)updateTargetImage:(UIImage *)image {
     [self.target removeObserver:self forKeyPath:@"image"];
     [self.target setImage:image];

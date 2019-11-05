@@ -5,4 +5,6 @@
 
 @property (nonatomic, strong) NSArray<NSNumber *> *matrix;
 
+- (NSString*)getImageData;
+
 @end
