@@ -26,13 +26,7 @@ const ColorMatrixFilter = ({
   return child && child.type && child.type.isColorMatrixFilter ? (
     React.cloneElement(child, { ...child.props, parentMatrix: concatedMatrix })
   ) : (
-    <NativeFilter
-      ref={e => {
-        this.nativeFilter = e;
-      }}
-      matrix={concatedMatrix}
-      {...restProps}
-    >
+    <NativeFilter matrix={concatedMatrix} {...restProps}>
       {children}
     </NativeFilter>
   );
