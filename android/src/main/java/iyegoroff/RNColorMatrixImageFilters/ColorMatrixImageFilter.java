@@ -32,6 +32,10 @@ public class ColorMatrixImageFilter extends ReactViewGroup {
     invalidate();
   }
 
+  public void onReceiveNativeEvent() {
+    
+  }
+
   @Override
   public void draw(Canvas canvas) {
     for (int i = 0; i < this.getChildCount(); i++) {
@@ -43,6 +47,23 @@ public class ColorMatrixImageFilter extends ReactViewGroup {
 
       if (child instanceof ImageView) {
         ((ImageView) child).setColorFilter(mFilter);
+        ImageView imageView = (ImageView)child;
+        imageView.buildDrawingCache();
+        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();  
+        bmap.compress(CompressFormat.PNG, 100, bos); 
+        byte[] bb = bos.toByteArray();
+
+        WritableMap event = Arguments.createMap();
+        event.putString("data", Base64.encodeBytes(bb)); 
+        ReactContext reactContext = (ReactContext)getContext();
+        reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
+            getId(),
+            "onDone",
+            event);
+        }
+
         break;
       }
     }

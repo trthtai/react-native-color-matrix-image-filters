@@ -23,6 +23,17 @@ public class ColorMatrixImageFilterManager extends ReactViewManager {
     return new ColorMatrixImageFilter(reactContext);
   }
 
+  @Override
+  public Map getExportedCustomBubblingEventTypeConstants() {
+        return MapBuilder.builder()
+            .put(
+                "onDone",
+                MapBuilder.of(
+                    "phasedRegistrationNames",
+                    MapBuilder.of("bubbled", "onDone")))
+                    .build();
+    }
+
   @ReactProp(name = PROP_MATRIX)
   public void setMatrix(ColorMatrixImageFilter view, ReadableArray matrix) {
     view.setMatrix(matrix);
