@@ -153,9 +153,10 @@ static CIContext* context;
                   forKeyPath:@"image"
                      options:NSKeyValueObservingOptionNew
                      context:NULL];
-    if (self.onDone)
+    if (self.onDone && image)
     {
-        self.onDone(@{@"data": [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]})
+        NSString *data = [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        self.onDone(@{@"data": data});
     }
 }
 
