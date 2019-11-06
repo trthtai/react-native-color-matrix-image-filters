@@ -35,5 +35,6 @@ RCT_EXPORT_METHOD(getImageData:(nonnull NSNumber *)reactTag callback:(RCTRespons
 }
 
 RCT_EXPORT_VIEW_PROPERTY(matrix, NSArray<NSNumber *>);
+RCT_EXPORT_VIEW_PROPERTY(onDone, RCTBubblingEventBlock);
 
 @end
